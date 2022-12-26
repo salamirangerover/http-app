@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    meta.helm.sh/release-name: malkoapp-1672041673
+    meta.helm.sh/release-namespace: default
+  labels:
+    app.kubernetes.io/instance: argocd.malko.of.by
+  name: argocdmalkoofby
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: argocd.malko.of.by
+    http:
+      paths:
+      - backend:
+          service:
+            name: argocd-server
+            port:
+              name: http
+        path: /
+        pathType: ImplementationSpecific
